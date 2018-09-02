@@ -24,11 +24,7 @@ public class StrategyShould {
 	public void randomStrategy_should_return_random_motion()
 	{
 		Strategy randomStrategy = new RandomStrategy();
-		for(int i =0;i < 10; i++)
-		{
-			Motion motion = randomStrategy.getNextMove();
-			//System.out.println(motion);
-			assertNotNull(motion);
-		}	
+		Motion motion = randomStrategy.getNextMove();
+		assertNotNull(motion);
 	}
 }

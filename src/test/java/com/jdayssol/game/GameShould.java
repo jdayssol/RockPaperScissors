@@ -19,9 +19,8 @@ public class GameShould {
 		playerTwo.setStrategy(new RandomStrategy());
 		Game game = new Game(playerOne,playerTwo,100);
 		game.start();
-		Assert.assertNotEquals(0,game.getStatistics()[0]);
-		Assert.assertNotEquals(0,game.getStatistics()[1]);
-		Assert.assertNotEquals(0,game.getStatistics()[2]);
+		int totalResult = game.getStatistics()[0] + game.getStatistics()[1] + game.getStatistics()[2];
+		Assert.assertEquals(100,totalResult);
 	}
 		
 	@Test

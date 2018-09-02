@@ -4,7 +4,7 @@ import com.jdayssol.strategy.Motion;
 import com.jdayssol.strategy.Strategy;
 
 /**
- * Class Player provide attributes name and strategy. 
+ * Class Player provides attributes name and strategy. 
  */
 public class Player {
 
@@ -24,7 +24,11 @@ public class Player {
 		this.strategy = strategy;
 	}
 	
-	public Motion play()
+	/**
+	 * Return the next move of the player.
+	 * @return
+	 */
+	public Motion nextMove()
 	{
 		return strategy.getNextMove();
 	}

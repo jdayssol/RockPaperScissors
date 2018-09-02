@@ -1,10 +1,8 @@
 package com.jdayssol.strategy;
 
 /**
- * Motion is a enumeration which propose 3 moves : rock / paper / scissors.
- * It also offer a method to return the result between two motions.
- * @author Asus
- *
+ *  Motion is an enumeration which proposes 3 moves: rock/paper/scissors. 
+ *  It also provides a function to return the result of the game between two motions.
  */
 public enum Motion {
 
@@ -17,11 +15,14 @@ public enum Motion {
 	 */
 	public int getResult(Motion motion2)
 	{
-		if(this == motion2) return 0;		
-		if(this == Rock && motion2 == Scissors 
+		int result;
+		if(this == motion2) result=0;		
+		else if(this == Rock && motion2 == Scissors 
 			|| this == Paper && motion2 == Rock 
 			|| this == Scissors && motion2 == Paper)
-		return 1;
-		else return -1;
+			result=1;
+		else result=-1;
+		
+		return result;
 	}
 }
