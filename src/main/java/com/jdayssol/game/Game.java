@@ -74,6 +74,9 @@ public class Game
 			case -1:
 				statistics[2]++;
 				break;
+			default:
+		        System.out.println("Unexpected round result");
+		        throw new RuntimeException("Unexpected round result");
 			}
 		}
 		printResult();		

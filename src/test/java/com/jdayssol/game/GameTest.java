@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.jdayssol.strategy.PaperStrategy;
 import com.jdayssol.strategy.RandomStrategy;
 
-public class GameShould {
+public class GameTest {
 
 	Player playerOne = new Player("Christian");
 	Player playerTwo = new Player("Nils");

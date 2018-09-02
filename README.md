@@ -17,5 +17,3 @@ Explanation of the program:
 - Interface Strategy provides a function that will return the next Motion. Since Strategy is an interface, you can create a lot of strategies using this interface without modifying the rest of the program.
 - Class Player provides attributes name and strategy. 
 - Class Game has a start function which launches the game between the two players a parameterized number of times. 
-
-For further information about the classes, you can use the javadoc of the program (doc/index.html)

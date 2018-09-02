@@ -10,7 +10,7 @@ import com.jdayssol.strategy.PaperStrategy;
 import com.jdayssol.strategy.RandomStrategy;
 import com.jdayssol.strategy.Strategy;
 
-public class StrategyShould {
+public class StrategyTest {
 
 	@Test
 	public void paperStrategy_should_return_paper()
