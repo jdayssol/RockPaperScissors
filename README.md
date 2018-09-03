@@ -1,11 +1,11 @@
 # RockPaperScissors
 A game of Rock Paper Scissors between two computers in Java.
 
-#Installation
+# Installation
 - Download and dezip the archive file
 - Or git clone https://github.com/jdayssol/RockPaperScissors on the command shell
 
-#Run the program
+# Run the program
 - Type on the command shell java -jar RockPaperScissors.jar
 - Or in a IDE select Run as -> Java application
 
@@ -26,6 +26,6 @@ Player “A” chooses a random symbol in every round, while player “B” cons
 - Class Player provides attributes name and strategy. 
 - Class Game has a start function which launches the game between the two players a parameterized number of times. 
 
-#Extra features
+# Extra features
 - I add a menu so you can easily re run the program and configure the game
 - I add various strategy
