@@ -16,9 +16,9 @@ Both players are controlled by the program, no user input is necessary after the
 Player “A” chooses a random symbol in every round, while player “B” consistently chooses “Paper”.
 
 # Technical stack
-- Created with Maven
-- Using Junit for the test
-- Version control with Git on my GitHub account https://github.com/jdayssol/RockPaperScissors
+- Created with Maven.
+- Using Junit for the test.
+- Version control with Git on my GitHub account https://github.com/jdayssol/RockPaperScissors.
 
 # Explanation of the program
 - Motion is an enumeration which proposes 3 moves: rock/paper/scissors. It also provides a function to return the result of the game between two motions.
@@ -27,5 +27,5 @@ Player “A” chooses a random symbol in every round, while player “B” cons
 - Class Game has a start function which launches the game between the two players a parameterized number of times. 
 
 # Extra features
-- I add a menu so you can easily re run the program and configure the game
-- I add various strategy
+- I add a menu so you can easily re run the program and configure the game.
+- I add a user input strategy.
