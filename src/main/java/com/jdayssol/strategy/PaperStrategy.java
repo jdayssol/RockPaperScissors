@@ -5,9 +5,12 @@ package com.jdayssol.strategy;
  */
 public class PaperStrategy implements Strategy {
 
-	@Override
 	public Motion getNextMove() {
 		return Motion.Paper;
+	}
+
+	public String getName() {
+		return "PaperStrategy";
 	}
 
 }
