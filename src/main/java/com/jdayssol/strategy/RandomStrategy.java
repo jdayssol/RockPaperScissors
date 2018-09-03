@@ -7,6 +7,7 @@ import java.util.Random;
  */
 public class RandomStrategy implements Strategy {
 
+	@Override
 	public Motion getNextMove() {
 		Random rand = new Random();
 		int nbRandom = rand.nextInt(3);
@@ -14,6 +15,7 @@ public class RandomStrategy implements Strategy {
 		return motion;
 	}
 
+	@Override
 	public String getName() {
 		return "Random Strategy";
 	}

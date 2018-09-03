@@ -1,14 +1,15 @@
 package com.jdayssol.strategy;
 
-import com.jdayssol.library.InputScanner;
+import com.jdayssol.utility.InputScanner;
 
 /**
  * Play the user choice move.
  */
 public class UserStrategy implements Strategy {
 
+	@Override
 	public Motion getNextMove() {
-		System.out.println("Type your move R(Rock) / P ( Paper) / S ( Scissors)");
+		System.out.println("Type your move : R (Rock) / P (Paper) / S (Scissors)");
 		String choice;
 		Motion motion = null;
 		do {
@@ -29,13 +30,12 @@ public class UserStrategy implements Strategy {
 			motion = Motion.Scissors;
 			break;
 		default:
-			System.out.println("Unexpected round result");
-			throw new RuntimeException("Unexpected round result");
+			throw new RuntimeException("Unexpected switch result getNextMove()");
 		}
-
 		return motion;
 	}
 
+	@Override
 	public String getName() {
 		return "User Strategy";
 	}

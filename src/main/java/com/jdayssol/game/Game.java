@@ -1,35 +1,35 @@
 package com.jdayssol.game;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import com.jdayssol.library.InputScanner;
+
 import com.jdayssol.strategy.Motion;
 import com.jdayssol.strategy.PaperStrategy;
 import com.jdayssol.strategy.RandomStrategy;
 import com.jdayssol.strategy.UserStrategy;
+import com.jdayssol.utility.InputScanner;
 
 /**
  * Rock Paper Scissors Game between two computer player. Has a start method
- * which launches the game between thetwo players a parameterized number of
+ * which launches the game between the two players a parameterized number of
  * times. Contains also the main method.
  */
 public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	private int nbGames;
-	private int[] statistics;
+	private int[] results;
 
 	public Game(Player playerOne, Player playerTwo, int nbGame) {
 		super();
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		this.nbGames = nbGame;
-		this.statistics = new int[3];
+		this.results = new int[3];
 	}
 
 	/**
-	 * Main method. Two player, one with a random stategy and one with a single
-	 * play strategy play 100 games. The result is then printed in the console.
-	 * 
+	 * Main method. Two player, one with a random strategy and one with a single play strategy play 100 games. 
+	 * The result is then printed in the console.
 	 * @param args
 	 * @throws Exception
 	 */
@@ -42,55 +42,42 @@ public class Game {
 		playerTwo.setStrategy(new RandomStrategy());
 		int nbGames = 100;
 		Game game = new Game(playerOne, playerTwo, nbGames);
-		game.menu();
+		game.callMenu();
 	}
 
-	protected void menu() {
+	/**
+	 * Call a menu to play the game several times and configures it.
+	 */
+	public void callMenu() {
 		String choice;
 		do {
 			System.out.println("Paper Scissors Rock game starts between " + playerOne.getName() + " playing "
 					+ playerOne.getStrategy().getName() + " and " + playerTwo.getName() + " playing "
 					+ playerTwo.getStrategy().getName() + " for " + nbGames + " round(s).");
 			this.start();
-			this.printResult();
+			this.printResults();
 			System.out.println("Press 'Q' to quit, 'C' to configure another game, or any key to start the same game.");
 			choice = InputScanner.getInstance().nextLine();
 			if (choice.equalsIgnoreCase("C")) {
-				this.configureGame();
+				this.configure();
 			}
 		} while (!choice.equalsIgnoreCase("Q"));
 		System.out.println("Thank you and goodbye!");
-		// We can now close the scanner
-		InputScanner.getInstance().close();
 	}
 
 	/**
-	 * Start the game and play the number of game.
+	 * Start the game and play it the number of game.
 	 */
 	protected void start() {
-		initStatistics();
+		init();
 		for (int i = 0; i < nbGames; i++) {
 			int result = play();
-			switch (result) {
-			case 0:
-				statistics[0]++;
-				break;
-			case 1:
-				statistics[1]++;
-				break;
-			case -1:
-				statistics[2]++;
-				break;
-			default:
-				System.out.println("Unexpected round result");
-				throw new RuntimeException("Unexpected round result");
-			}
+			results[result]++;
 		}
 	}
 
 	/**
 	 * Play one round and return the result.
-	 * 
 	 * @return int result.
 	 */
 	protected int play() {
@@ -99,32 +86,33 @@ public class Game {
 		return motionPlayerOne.getResult(motionPlayerTwo);
 	}
 
-	protected void printResult() {
+	protected void printResults() {
 		System.out.println("Game is over after " + nbGames + " round(s):");
-		System.out.println("Player " + playerOne.getName() + " wins " + statistics[1] + " round(s).");
-		System.out.println("Player " + playerTwo.getName() + " wins " + statistics[2] + " round(s).");
-		System.out.println("Number of ties: " + statistics[0] + ".");
+		System.out.println("Player " + playerOne.getName() + " wins " + results[1] + " round(s).");
+		System.out.println("Player " + playerTwo.getName() + " wins " + results[2] + " round(s).");
+		System.out.println("Number of ties: " + results[0] + ".");
 	}
 
-	protected int[] getStatistics() {
-		return statistics;
+	protected int[] getResults() {
+		return results;
 	}
 	
-	private void configureGame() {
-		configureNbGame();
+	private void configure() {
+		configureNbGames();
 		configurePlayerStrategy(this.playerOne);
 		configurePlayerStrategy(this.playerTwo);
 	}
 
-	private void configureNbGame() {
-		System.out.println("Configure number of game");
+	private void configureNbGames() {
+		System.out.println("Configure the number of games");
 		String nbGameInput;
 		do {
 			nbGameInput = InputScanner.getInstance().nextLine();
-			if (!NumberUtils.isCreatable(nbGameInput)) {
+			if (!NumberUtils.isDigits(nbGameInput)) {
 				System.out.println("Wrong input, try again please");
 			}
-		} while (NumberUtils.isCreatable(nbGameInput));
+		} while (!NumberUtils.isDigits(nbGameInput));
+		this.nbGames = Integer.parseInt(nbGameInput);
 	}
 
 	private void configurePlayerStrategy(Player player) {
@@ -153,9 +141,9 @@ public class Game {
 		}
 	}
 
-	private void initStatistics() {
-		statistics[0] = 0;
-		statistics[1] = 0;
-		statistics[2] = 0;
+	private void init() {
+		results[0] = 0;
+		results[1] = 0;
+		results[2] = 0;
 	}
 }

@@ -24,4 +24,16 @@ public class MotionTest {
 	{
 		Assert.assertEquals(1,Motion.Rock.getResult(Motion.Scissors));
 	}
+	
+	@Test
+	public void paper_should_lose_against_scissors()
+	{
+		Assert.assertEquals(2,Motion.Paper.getResult(Motion.Scissors));
+	}
+	
+	@Test
+	public void paper_should_tie_against_paper()
+	{
+		Assert.assertEquals(0,Motion.Paper.getResult(Motion.Paper));
+	}
 }
