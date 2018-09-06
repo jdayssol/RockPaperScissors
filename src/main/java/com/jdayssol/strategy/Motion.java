@@ -13,18 +13,18 @@ public enum Motion {
 	 * @param otherMotion : the motion of the other player.
 	 * @return 0 = tie, 1 = Player win, 2 = Other player win.
 	 */
-	public int getResult(Motion otherMotion) {
+	public int retrieveResult(Motion otherMotion) {
 		int result;
 		if (this == otherMotion)
 			result = 0;
-		else if (this == otherMotion.getWinner())
+		else if (this == otherMotion.retrieveWinner())
 			result = 1;
 		else
 			result = 2;
 		return result;
 	}
 
-	public Motion getWinner() {
+	public Motion retrieveWinner() {
 		Motion winnerMotion = null;
 		switch (this) {
 		case Rock:
@@ -37,7 +37,7 @@ public enum Motion {
 			winnerMotion = Motion.Rock;
 			break;
 		default:
-			throw new RuntimeException("Unexpected Motion switch result in getWinner()");
+			throw new RuntimeException("Unexpected Motion switch result in  retrieveWinner()");
 		}
 		return winnerMotion;
 	}

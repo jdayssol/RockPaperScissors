@@ -11,9 +11,10 @@ public class Player {
 	private String name;
 	private Strategy strategy;
 	
-	public Player(String name) {
+	public Player(String name, Strategy strategy) {
 		super();
 		this.name = name;
+		this.strategy = strategy;
 	}
 
 	public String getName() {

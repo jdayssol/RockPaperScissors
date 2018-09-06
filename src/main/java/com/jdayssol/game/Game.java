@@ -17,14 +17,13 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	private int nbGames;
-	private int[] results;
+	private int[] results = new int[3];
 
-	public Game(Player playerOne, Player playerTwo, int nbGame) {
+	public Game(Player playerOne, Player playerTwo, int nbGames) {
 		super();
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
-		this.nbGames = nbGame;
-		this.results = new int[3];
+		this.nbGames = nbGames;
 	}
 
 	/**
@@ -36,10 +35,8 @@ public class Game {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Welcome to my Paper-Scissors-Rock program.");
 
-		Player playerOne = new Player("Christian");
-		Player playerTwo = new Player("Nils");
-		playerOne.setStrategy(new PaperStrategy());
-		playerTwo.setStrategy(new RandomStrategy());
+		Player playerOne = new Player("Christian",new PaperStrategy());
+		Player playerTwo = new Player("Nils",new RandomStrategy());
 		int nbGames = 100;
 		Game game = new Game(playerOne, playerTwo, nbGames);
 		game.callMenu();
@@ -71,7 +68,7 @@ public class Game {
 	protected void start() {
 		init();
 		for (int i = 0; i < nbGames; i++) {
-			int result = play();
+			int result = playOneRound();
 			results[result]++;
 		}
 	}
@@ -80,10 +77,10 @@ public class Game {
 	 * Play one round and return the result.
 	 * @return int result.
 	 */
-	protected int play() {
+	protected int playOneRound() {
 		Motion motionPlayerOne = playerOne.nextMove();
 		Motion motionPlayerTwo = playerTwo.nextMove();
-		return motionPlayerOne.getResult(motionPlayerTwo);
+		return motionPlayerOne.retrieveResult(motionPlayerTwo);
 	}
 
 	protected void printResults() {
@@ -93,10 +90,6 @@ public class Game {
 		System.out.println("Number of ties: " + results[0] + ".");
 	}
 
-	protected int[] getResults() {
-		return results;
-	}
-	
 	private void configure() {
 		configureNbGames();
 		configurePlayerStrategy(this.playerOne);
@@ -145,5 +138,9 @@ public class Game {
 		results[0] = 0;
 		results[1] = 0;
 		results[2] = 0;
+	}
+	
+	protected int[] getResults() {
+		return results;
 	}
 }
