@@ -1,12 +1,6 @@
 # RockPaperScissors
 **A game of Rock Paper Scissors between two computers in Java.**
 
-
-
-[TOC]
-
-
-
 ## Description
 
 The exercise is about the implementation of the  game “Rock-Paper-Scissors” (https://en.wikipedia.org/wiki/Rock%E2%80%93paper%E2%80%93scissors) in Java. 
