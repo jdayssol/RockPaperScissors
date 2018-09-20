@@ -63,4 +63,10 @@ public class GameTest {
 		int totalResult = game.getResults()[0] + game.getResults()[1] + game.getResults()[2];
 		Assert.assertEquals(1,totalResult);
 	}
+	
+	@Test
+	public void print()
+	{
+		Game.print("Test %s S %d","d",5);
+	}
 }

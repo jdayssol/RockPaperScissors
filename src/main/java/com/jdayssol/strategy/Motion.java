@@ -25,7 +25,7 @@ public enum Motion {
 	}
 
 	public Motion retrieveWinner() {
-		Motion winnerMotion = null;
+		Motion winnerMotion;
 		switch (this) {
 		case Rock:
 			winnerMotion = Motion.Paper;

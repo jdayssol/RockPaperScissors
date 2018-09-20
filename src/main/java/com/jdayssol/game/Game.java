@@ -1,12 +1,16 @@
 package com.jdayssol.game;
 
+import java.util.HashMap;
+
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.jdayssol.strategy.Motion;
 import com.jdayssol.strategy.PaperStrategy;
 import com.jdayssol.strategy.RandomStrategy;
+import com.jdayssol.strategy.Strategy;
 import com.jdayssol.strategy.UserStrategy;
 import com.jdayssol.utility.InputScanner;
+
 
 /**
  * Rock Paper Scissors Game between two computer player. Has a start method
@@ -14,16 +18,21 @@ import com.jdayssol.utility.InputScanner;
  * times. Contains also the main method.
  */
 public class Game {
+	
 	private Player playerOne;
 	private Player playerTwo;
 	private int nbGames;
 	private int[] results = new int[3];
+	HashMap<String,Strategy> strategies = new HashMap<String,Strategy>();
 
 	public Game(Player playerOne, Player playerTwo, int nbGames) {
 		super();
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		this.nbGames = nbGames;
+		strategies.put("U", new UserStrategy());
+		strategies.put("P", new PaperStrategy());
+		strategies.put("R", new RandomStrategy());
 	}
 
 	/**
@@ -33,8 +42,7 @@ public class Game {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		System.out.println("Welcome to my Paper-Scissors-Rock program.");
-
+		print("Welcome to my Paper-Scissors-Rock program.");
 		Player playerOne = new Player("Christian",new PaperStrategy());
 		Player playerTwo = new Player("Nils",new RandomStrategy());
 		int nbGames = 100;
@@ -48,18 +56,21 @@ public class Game {
 	public void callMenu() {
 		String choice;
 		do {
-			System.out.println("Paper Scissors Rock game starts between " + playerOne.getName() + " playing "
-					+ playerOne.getStrategy().getName() + " and " + playerTwo.getName() + " playing "
-					+ playerTwo.getStrategy().getName() + " for " + nbGames + " round(s).");
+			print("Paper Scissors Rock game starts between %s playing %s  and %s playing %s for %d round(s).",
+					playerOne.getName(),
+					playerOne.getStrategy().getName(),
+					playerTwo.getName(),
+					playerTwo.getStrategy().getName(),
+					nbGames);
 			this.start();
 			this.printResults();
-			System.out.println("Press 'Q' to quit, 'C' to configure another game, or any key to start the same game.");
+			print("Press 'Q' to quit, 'C' to configure another game, or any key to start the same game.");
 			choice = InputScanner.getInstance().nextLine();
 			if (choice.equalsIgnoreCase("C")) {
 				this.configure();
 			}
 		} while (!choice.equalsIgnoreCase("Q"));
-		System.out.println("Thank you and goodbye!");
+		print("Thank you and goodbye!");
 	}
 
 	/**
@@ -83,13 +94,6 @@ public class Game {
 		return motionPlayerOne.retrieveResult(motionPlayerTwo);
 	}
 
-	protected void printResults() {
-		System.out.println("Game is over after " + nbGames + " round(s):");
-		System.out.println("Player " + playerOne.getName() + " wins " + results[1] + " round(s).");
-		System.out.println("Player " + playerTwo.getName() + " wins " + results[2] + " round(s).");
-		System.out.println("Number of ties: " + results[0] + ".");
-	}
-
 	private void configure() {
 		configureNbGames();
 		configurePlayerStrategy(this.playerOne);
@@ -97,47 +101,48 @@ public class Game {
 	}
 
 	private void configureNbGames() {
-		System.out.println("Configure the number of games");
+		print("Configure the number of games: ");
 		String nbGameInput;
 		do {
 			nbGameInput = InputScanner.getInstance().nextLine();
 			if (!NumberUtils.isDigits(nbGameInput)) {
-				System.out.println("Wrong input, try again please");
+				print("Wrong input, try again please");
 			}
 		} while (!NumberUtils.isDigits(nbGameInput));
 		this.nbGames = Integer.parseInt(nbGameInput);
 	}
 
 	private void configurePlayerStrategy(Player player) {
-		System.out.println("Configure player " + player.getName() + " strategy: U ( User ) P (Paper) R ( Random)");
-		String playerStrategyInput;
+		print("Configure player " + player.getName() + " strategy: U ( User ) P (Paper) R ( Random)");
+		String strategyInput;
 		do {
-			playerStrategyInput = InputScanner.getInstance().nextLine();
-			if (!(playerStrategyInput.equalsIgnoreCase("U") || playerStrategyInput.equalsIgnoreCase("P")
-					|| playerStrategyInput.equalsIgnoreCase("R"))) {
-				System.out.println("Wrong input, try again please");
+			strategyInput=InputScanner.getInstance().nextLine();
+			if (!strategies.containsKey("strategyInput")) {
+				print("Wrong input, try again please");
 			}
-		} while (!(playerStrategyInput.equalsIgnoreCase("R") || playerStrategyInput.equalsIgnoreCase("P")
-				|| playerStrategyInput.equalsIgnoreCase("R")));
-		switch (playerStrategyInput) {
-		case "U":
-			player.setStrategy(new UserStrategy());
-			break;
-		case "P":
-			player.setStrategy(new PaperStrategy());
-			break;
-		case "R":
-			player.setStrategy(new RandomStrategy());
-			break;
-		default:
-			System.out.println("Unexpected choice result");
-		}
+		} while (!strategies.containsKey("strategyInput"));
+		player.setStrategy(strategies.get(strategyInput));
+	}
+	
+	protected void printResults() {
+		print("Game is over after %d round(s):",nbGames );
+		print("Player %s wins %d round(s).",playerOne.getName(),results[1]);		
+		print("Player %s wins %d round(s).",playerTwo.getName(),results[2]);
+		print("Number of ties: %d .",results[0]);
+	}
+	
+	protected static void print(String toPrint,Object... args)
+	{
+		System.out.printf(toPrint,args);
+	}
+	
+	protected static void print(String toPrint)
+	{
+		System.out.println(toPrint);
 	}
 
 	private void init() {
-		results[0] = 0;
-		results[1] = 0;
-		results[2] = 0;
+		results = new int[3];
 	}
 	
 	protected int[] getResults() {

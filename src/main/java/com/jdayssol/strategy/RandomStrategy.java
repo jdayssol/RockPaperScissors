@@ -20,4 +20,5 @@ public class RandomStrategy implements Strategy {
 		return "Random Strategy";
 	}
 
+
 }

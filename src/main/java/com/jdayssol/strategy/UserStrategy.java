@@ -1,5 +1,6 @@
 package com.jdayssol.strategy;
 
+import java.util.HashMap;
 import com.jdayssol.utility.InputScanner;
 
 /**
@@ -7,37 +8,29 @@ import com.jdayssol.utility.InputScanner;
  */
 public class UserStrategy implements Strategy {
 
+	HashMap<String, Motion> motions = new HashMap<String, Motion>();
+
+	public UserStrategy() {
+		motions.put("R", Motion.Rock);
+		motions.put("P", Motion.Paper);
+		motions.put("S", Motion.Scissors);
+	}
+
 	@Override
 	public Motion getNextMove() {
 		System.out.println("Type your move : R (Rock) / P (Paper) / S (Scissors)");
 		String choice;
-		Motion motion = null;
 		do {
 			choice = InputScanner.getInstance().nextLine();
-			if (!(choice.equalsIgnoreCase("R") || choice.equalsIgnoreCase("P") || choice.equalsIgnoreCase("S"))) {
+			if (!motions.containsKey(choice)) {
 				System.out.println("Wrong input, try again please");
 			}
-		} while (!(choice.equalsIgnoreCase("R") || choice.equalsIgnoreCase("P") || choice.equalsIgnoreCase("S")));
-
-		switch (choice) {
-		case "R":
-			motion = Motion.Rock;
-			break;
-		case "P":
-			motion = Motion.Paper;
-			break;
-		case "S":
-			motion = Motion.Scissors;
-			break;
-		default:
-			throw new RuntimeException("Unexpected switch result getNextMove()");
-		}
-		return motion;
+		} while (!motions.containsKey(choice));
+		return motions.get(choice);
 	}
 
 	@Override
 	public String getName() {
 		return "User Strategy";
 	}
-
 }
