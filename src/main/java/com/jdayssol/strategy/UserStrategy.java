@@ -8,13 +8,16 @@ import com.jdayssol.utility.InputScanner;
  */
 public class UserStrategy implements Strategy {
 
-	HashMap<String, Motion> motions = new HashMap<String, Motion>();
+	private final HashMap<String,Motion> motions = new HashMap<String,Motion>()
+	{
+		private static final long serialVersionUID = 1L;
+		{
+			put("R", Motion.Rock);
+			put("P", Motion.Paper);
+			put("S", Motion.Scissors);
+		}
+	};
 
-	public UserStrategy() {
-		motions.put("R", Motion.Rock);
-		motions.put("P", Motion.Paper);
-		motions.put("S", Motion.Scissors);
-	}
 
 	@Override
 	public Motion getNextMove() {

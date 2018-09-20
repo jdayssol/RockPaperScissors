@@ -23,16 +23,21 @@ public class Game {
 	private Player playerTwo;
 	private int nbGames;
 	private int[] results = new int[3];
-	HashMap<String,Strategy> strategies = new HashMap<String,Strategy>();
+	private final HashMap<String,Strategy> strategies = new HashMap<String,Strategy>()
+	{
+		private static final long serialVersionUID = 1L;
+		{
+				put("U", new UserStrategy());
+				put("P", new PaperStrategy());
+				put("R", new RandomStrategy());
+		}
+	};
 
 	public Game(Player playerOne, Player playerTwo, int nbGames) {
 		super();
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		this.nbGames = nbGames;
-		strategies.put("U", new UserStrategy());
-		strategies.put("P", new PaperStrategy());
-		strategies.put("R", new RandomStrategy());
 	}
 
 	/**
