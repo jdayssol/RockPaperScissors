@@ -122,10 +122,10 @@ public class Game {
 		String strategyInput;
 		do {
 			strategyInput=InputScanner.getInstance().nextLine();
-			if (!strategies.containsKey("strategyInput")) {
+			if (!strategies.containsKey(strategyInput)) {
 				print("Wrong input, try again please");
 			}
-		} while (!strategies.containsKey("strategyInput"));
+		} while (!strategies.containsKey(strategyInput));
 		player.setStrategy(strategies.get(strategyInput));
 	}
 	
@@ -133,12 +133,12 @@ public class Game {
 		print("Game is over after %d round(s):",nbGames );
 		print("Player %s wins %d round(s).",playerOne.getName(),results[1]);		
 		print("Player %s wins %d round(s).",playerTwo.getName(),results[2]);
-		print("Number of ties: %d .",results[0]);
+		print("Number of ties: %d.",results[0]);
 	}
 	
 	protected static void print(String toPrint,Object... args)
 	{
-		System.out.printf(toPrint,args);
+		System.out.printf(toPrint+"%n",args);
 	}
 	
 	protected static void print(String toPrint)
