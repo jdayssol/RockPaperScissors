@@ -19,7 +19,6 @@ public class StrategyTest {
 	@Rule
 	public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
-	
 	@Test
 	public void paperStrategy_should_return_paper()
 	{

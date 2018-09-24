@@ -7,9 +7,9 @@ import java.util.Random;
  */
 public class RandomStrategy implements Strategy {
 
+	Random rand = new Random();
 	@Override
 	public Motion getNextMove() {
-		Random rand = new Random();
 		int nbRandom = rand.nextInt(3);
 		Motion motion = Motion.values()[nbRandom];
 		return motion;

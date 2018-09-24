@@ -4,36 +4,37 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.jdayssol.strategy.Motion;
+import com.jdayssol.strategy.RoundResult;
 
 public class MotionTest {
 
 	@Test
 	public void paper_should_win_against_rock()
 	{
-		Assert.assertEquals(1,Motion.Paper.retrieveResult(Motion.Rock));
+		Assert.assertEquals(RoundResult.Win,Motion.Paper.isWinningAgainst(Motion.Rock));
 	}
 	
 	@Test
 	public void rock_should_win_against_scissors()
 	{
-		Assert.assertEquals(1,Motion.Rock.retrieveResult(Motion.Scissors));
+		Assert.assertEquals(RoundResult.Win,Motion.Rock.isWinningAgainst(Motion.Scissors));
 	}
 	
 	@Test
 	public void scissors_should_win_against_paper()
 	{
-		Assert.assertEquals(1,Motion.Rock.retrieveResult(Motion.Scissors));
+		Assert.assertEquals(RoundResult.Win,Motion.Rock.isWinningAgainst(Motion.Scissors));
 	}
 	
 	@Test
 	public void paper_should_lose_against_scissors()
 	{
-		Assert.assertEquals(2,Motion.Paper.retrieveResult(Motion.Scissors));
+		Assert.assertEquals(RoundResult.Lose,Motion.Paper.isWinningAgainst(Motion.Scissors));
 	}
 	
 	@Test
 	public void paper_should_tie_against_paper()
 	{
-		Assert.assertEquals(0,Motion.Paper.retrieveResult(Motion.Paper));
+		Assert.assertEquals(RoundResult.Tie,Motion.Paper.isWinningAgainst(Motion.Paper));
 	}
 }

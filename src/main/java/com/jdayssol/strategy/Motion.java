@@ -1,5 +1,7 @@
 package com.jdayssol.strategy;
 
+import com.jdayssol.game.GameResult;
+
 /**
  * Motion is an enumeration which proposes 3 moves: rock / paper / scissors.
  * It also provides a function to return the result of the game between two motions.
@@ -13,18 +15,19 @@ public enum Motion {
 	 * @param otherMotion : the motion of the other player.
 	 * @return 0 = tie, 1 = Player win, 2 = Other player win.
 	 */
-	public int retrieveResult(Motion otherMotion) {
-		int result;
+	public RoundResult isWinningAgainst(Motion otherMotion) {
+		RoundResult result = RoundResult.Tie;
+		//int result;
 		if (this == otherMotion)
-			result = 0;
-		else if (this == otherMotion.retrieveWinner())
-			result = 1;
+			result = RoundResult.Tie;
+		else if (otherMotion.winnerMotion() == this)
+			result = RoundResult.Win;
 		else
-			result = 2;
+			result = RoundResult.Lose;
 		return result;
 	}
 
-	public Motion retrieveWinner() {
+	public Motion winnerMotion() {
 		Motion winnerMotion;
 		switch (this) {
 		case Rock:

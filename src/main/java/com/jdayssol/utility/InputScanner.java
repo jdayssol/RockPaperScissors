@@ -3,7 +3,7 @@ package com.jdayssol.utility;
 import java.util.Scanner;
 
 /**
- * Scanner for input
+ * Utility class to scan for input
  */
 public class InputScanner {
     public static Scanner getInstance()
