@@ -75,21 +75,21 @@ public class GameMenu {
 	}
 	
 	private void configure() {
-		configureNbGames();
+		configureNumberOfGames();
 		configurePlayerStrategy(game.getPlayerOne());
 		configurePlayerStrategy(game.getPlayerTwo());
 	}
 
-	private void configureNbGames() {
+	private void configureNumberOfGames() {
 		print("Configure the number of games: ");
-		String nbGameInput;
+		String numberOfGamesInput;
 		do {
-			nbGameInput = InputScanner.getInstance().nextLine();
-			if (!NumberUtils.isDigits(nbGameInput)) {
+			numberOfGamesInput = InputScanner.getInstance().nextLine();
+			if (!NumberUtils.isDigits(numberOfGamesInput)) {
 				print("Wrong input, try again please");
 			}
-		} while (!NumberUtils.isDigits(nbGameInput));
-		game.setNumberOfGames(Integer.parseInt(nbGameInput));
+		} while (!NumberUtils.isDigits(numberOfGamesInput));
+		game.setNumberOfGames(Integer.parseInt(numberOfGamesInput));
 	}
 
 	private void configurePlayerStrategy(Player player) {
