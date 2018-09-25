@@ -35,21 +35,7 @@ public class GameMenu {
 				put("R", new RandomStrategy());
 		}
 	};
-	/**
-	 * Main method. Two player, one with a random strategy and one with a single play strategy play 100 games. 
-	 * The result is then printed in the console.
-	 * @param args
-	 * @throws Exception
-	 */
-	public static void main(String[] args) throws Exception {
-		print("Welcome to my Paper-Scissors-Rock program.");
-		Player playerOne = new Player("Christian",new PaperStrategy());
-		Player playerTwo = new Player("Nils",new RandomStrategy());
-		int nbGames = 100;
-		Game game = new Game(playerOne, playerTwo, nbGames);
-		GameMenu gameMenu = new GameMenu(game);
-		gameMenu.callMenu();
-	}
+
 
 	/**
 	 * Call a menu to play the game several times and configures it.
@@ -57,12 +43,13 @@ public class GameMenu {
 	public void callMenu() {
 		String choice;
 		do {
+			GameInformation info = game.retrieveInformation();
 			print("Paper Scissors Rock game starts between %s playing %s  and %s playing %s for %d round(s).",
-					game.getPlayerOne().getName(),
-					game.getPlayerOne().getStrategy().getName(),
-					game.getPlayerTwo().getName(),
-					game.getPlayerTwo().getStrategy().getName(),
-					game.getNumberOfGames());
+					info.getPlayerOneName(),
+					info.getStrategyOneName(),
+					info.getPlayerTwoName(),
+					info.getStrategyTwoName(),
+					info.getNumberOfGames());
 			game.start();
 			printResults();
 			print("Press 'Q' to quit, 'C' to configure another game, or any key to start the same game.");
@@ -105,10 +92,11 @@ public class GameMenu {
 	}
 	
 	private void printResults() {
-		print("Game is over after %d round(s):",game.getNumberOfGames());
-		print("Player %s wins %d round(s).",game.getPlayerOne().getName(),game.getResults().retrieveResult(GameResult.PlayerOne));		
-		print("Player %s wins %d round(s).",game.getPlayerTwo().getName(),game.getResults().retrieveResult(GameResult.PlayerTwo));
-		print("Number of ties: %d.",game.getResults().retrieveResult(GameResult.Tie));
+		GameInformation gameInfo = game.retrieveInformation();
+		print("Game is over after %d round(s):",gameInfo.getNumberOfGames());
+		print("Player %s wins %d round(s).",gameInfo.getPlayerOneName(),gameInfo.getPlayerOneNumberOfWin());		
+		print("Player %s wins %d round(s).",gameInfo.getPlayerTwoName(),gameInfo.getPlayerTwoNumberOfWin());
+		print("Number of ties: %d.",gameInfo.getNumberOfTie());
 	}
 
 	public Game getGame() {

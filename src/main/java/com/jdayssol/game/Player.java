@@ -29,11 +29,8 @@ public class Player {
 		this.strategy = strategy;
 	}
 	
-	/**
-	 * Return the next move of the player.
-	 */
-	public Motion nextMove()
+	public Motion play()
 	{
-		return strategy.getNextMove();
+		return strategy.retrieveNextMove();
 	}
 }

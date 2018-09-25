@@ -7,14 +7,18 @@ import java.util.Random;
  */
 public class RandomStrategy implements Strategy {
 
-	Random rand = new Random();
+	protected Random random = new Random(); // Random need to use the same seed to maintain a good random algorithm.
+	
 	@Override
-	public Motion getNextMove() {
-		int nbRandom = rand.nextInt(3);
-		Motion motion = Motion.values()[nbRandom];
+	public Motion retrieveNextMove() {
+		Motion motion = Motion.values()[getNextRandomNumber(random)];
 		return motion;
 	}
 
+	protected int getNextRandomNumber(Random random){
+		return random.nextInt(3);
+	}
+	
 	@Override
 	public String getName() {
 		return "Random Strategy";

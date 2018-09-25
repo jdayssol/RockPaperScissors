@@ -1,4 +1,4 @@
-package com.jdayssol.game;
+package com.jdayssol.utility;
 
 import org.junit.Test;
 

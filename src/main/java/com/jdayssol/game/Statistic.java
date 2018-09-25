@@ -1,5 +1,5 @@
 package com.jdayssol.game;
 
-public enum GameResult {
+public enum Statistic {
 	Tie,PlayerOne,PlayerTwo
 }

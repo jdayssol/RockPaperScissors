@@ -12,7 +12,7 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	private int numberOfGames;
-	private GameResults results = new GameResults();
+	private Statistics statistics = new Statistics();
 
 
 	public Game(Player playerOne, Player playerTwo, int numberOfGames) {
@@ -26,10 +26,10 @@ public class Game {
 	 * Start the game and play it the number of game.
 	 */
 	public void start() {
-		init();
+		statistics = new Statistics();
 		for (int i = 0; i < numberOfGames; i++) {
 			RoundResult result = playOneRound();
-			results.storeResult(result);
+			statistics.storeStatistic(result);
 		}
 	}
 
@@ -38,17 +38,26 @@ public class Game {
 	 * @return Result result.
 	 */
 	protected RoundResult playOneRound() {
-		Motion motionPlayerOne = playerOne.nextMove();
-		Motion motionPlayerTwo = playerTwo.nextMove();
+		Motion motionPlayerOne = playerOne.play();
+		Motion motionPlayerTwo = playerTwo.play();
 		return motionPlayerOne.isWinningAgainst(motionPlayerTwo);
 	}
-
-	private void init() {
-		results = new GameResults();
+	
+	public GameInformation retrieveInformation()
+	{
+		GameInformation gameInformation = new GameInformation(playerOne.getName(),
+				playerOne.getStrategy().getName(),
+				playerTwo.getName(),
+				playerTwo.getStrategy().getName(),
+				numberOfGames,
+				statistics.retrieveStatistics(Statistic.PlayerOne),
+				statistics.retrieveStatistics(Statistic.PlayerTwo),
+				statistics.retrieveStatistics(Statistic.Tie));
+		return gameInformation;	
 	}
 	
-	protected GameResults getResults() {
-		return results;
+	protected Statistics getResults() {
+		return statistics;
 	}
 
 	protected Player getPlayerOne() {

@@ -1,6 +1,6 @@
 package com.jdayssol.strategy;
 
-import com.jdayssol.game.GameResult;
+import com.jdayssol.game.Statistic;
 
 /**
  * Motion is an enumeration which proposes 3 moves: rock / paper / scissors.
