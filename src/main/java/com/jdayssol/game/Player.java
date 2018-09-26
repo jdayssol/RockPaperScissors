@@ -31,6 +31,6 @@ public class Player {
 	
 	public Motion play()
 	{
-		return strategy.retrieveNextMove();
+		return strategy.retrieveMotion();
 	}
 }

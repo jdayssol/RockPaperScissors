@@ -1,5 +1,5 @@
 package com.jdayssol.strategy;
 
-public enum RoundResult {
+public enum Result {
 	Tie,Win,Lose
 }

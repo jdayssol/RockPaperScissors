@@ -99,7 +99,7 @@ public class GameMenu {
 		print("Number of ties: %d.",gameInfo.getNumberOfTie());
 	}
 
-	public Game getGame() {
+	protected Game getGame() {
 		return game;
 	}
 }

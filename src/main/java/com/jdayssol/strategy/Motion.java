@@ -8,14 +8,14 @@ public enum Motion {
 
 	Rock, Paper, Scissors;
 
-	public RoundResult isWinningAgainst(Motion otherMotion) {
-		RoundResult result = RoundResult.Tie;
+	public Result isWinningAgainst(Motion otherMotion) {
+		Result result = Result.Tie;
 		if (this == otherMotion)
-			result = RoundResult.Tie;
+			result = Result.Tie;
 		else if (otherMotion.winner() == this)
-			result = RoundResult.Win;
+			result = Result.Win;
 		else
-			result = RoundResult.Lose;
+			result = Result.Lose;
 		return result;
 	}
 

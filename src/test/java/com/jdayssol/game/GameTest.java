@@ -9,15 +9,15 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import com.jdayssol.strategy.PaperStrategy;
 import com.jdayssol.strategy.RandomStrategy;
-import com.jdayssol.strategy.RoundResult;
+import com.jdayssol.strategy.Result;
 import com.jdayssol.strategy.UserStrategy;
 
 public class GameTest {
 
 	Player playerOne = new Player("Player One",new PaperStrategy());
-	Player playerTwo = new Player("Player Two",new RandomStrategy());
-	
+	Player playerTwo = new Player("Player Two",new RandomStrategy());	
 	String possibleResults = "Tie Win Lose";
+	
 	@Rule
 	public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
@@ -36,7 +36,7 @@ public class GameTest {
 	public void run_1_game_paper_against_random_should_return_random_result()
 	{
 		Game game = new Game(playerOne,playerTwo,1);
-		RoundResult result = game.playOneRound();
+		Result result = game.playOneRound();
 		Assert.assertThat(possibleResults, CoreMatchers.containsString(result.toString()));
 	}
 	
@@ -47,7 +47,7 @@ public class GameTest {
 		playerOne.setStrategy(new UserStrategy());
 		playerTwo.setStrategy(new RandomStrategy());
 		Game game = new Game(playerOne,playerTwo,1);
-		RoundResult result = game.playOneRound();
+		Result result = game.playOneRound();
 		Assert.assertThat(possibleResults, CoreMatchers.containsString(result.toString()));
 	}
 	

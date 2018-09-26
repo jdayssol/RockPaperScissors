@@ -7,7 +7,7 @@ package com.jdayssol.strategy;
  */
 public interface Strategy {
 
-	public abstract Motion retrieveNextMove();
+	public abstract Motion retrieveMotion();
 
 	public abstract String getName();
 }

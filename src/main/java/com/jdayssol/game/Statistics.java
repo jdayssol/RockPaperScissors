@@ -1,11 +1,11 @@
 package com.jdayssol.game;
 
-import com.jdayssol.strategy.RoundResult;
+import com.jdayssol.strategy.Result;
 
 public class Statistics {
 	private int[] statistics = new int[3];
 	
-	protected void storeStatistic(RoundResult result)
+	protected void storeStatistic(Result result)
 	{
 		statistics[result.ordinal()]++;
 	}

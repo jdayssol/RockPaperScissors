@@ -1,7 +1,7 @@
 package com.jdayssol.game;
 
 import com.jdayssol.strategy.Motion;
-import com.jdayssol.strategy.RoundResult;
+import com.jdayssol.strategy.Result;
 /**
  * Rock Paper Scissors Game between two computer player. Has a start method
  * which launches the game between the two players a parameterized number of
@@ -28,7 +28,7 @@ public class Game {
 	public void start() {
 		statistics = new Statistics();
 		for (int i = 0; i < numberOfGames; i++) {
-			RoundResult result = playOneRound();
+			Result result = playOneRound();
 			statistics.storeStatistic(result);
 		}
 	}
@@ -37,7 +37,7 @@ public class Game {
 	 * Play one round and return the result.
 	 * @return Result result.
 	 */
-	protected RoundResult playOneRound() {
+	protected Result playOneRound() {
 		Motion motionPlayerOne = playerOne.play();
 		Motion motionPlayerTwo = playerTwo.play();
 		return motionPlayerOne.isWinningAgainst(motionPlayerTwo);

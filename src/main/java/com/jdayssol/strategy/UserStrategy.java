@@ -20,7 +20,7 @@ public class UserStrategy implements Strategy {
 
 
 	@Override
-	public Motion retrieveNextMove() {
+	public Motion retrieveMotion() {
 		System.out.println("Type your move : R (Rock) / P (Paper) / S (Scissors)");
 		String choice;
 		do {

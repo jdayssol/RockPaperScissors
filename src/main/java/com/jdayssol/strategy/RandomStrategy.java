@@ -10,7 +10,7 @@ public class RandomStrategy implements Strategy {
 	protected Random random = new Random(); // Random need to use the same seed to maintain a good random algorithm.
 	
 	@Override
-	public Motion retrieveNextMove() {
+	public Motion retrieveMotion() {
 		Motion motion = Motion.values()[getNextRandomNumber(random)];
 		return motion;
 	}

@@ -6,7 +6,7 @@ package com.jdayssol.strategy;
 public class PaperStrategy implements Strategy {
 
 	@Override
-	public Motion retrieveNextMove() {
+	public Motion retrieveMotion() {
 		return Motion.Paper;
 	}
 

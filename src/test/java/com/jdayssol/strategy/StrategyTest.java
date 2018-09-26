@@ -18,7 +18,9 @@ public class StrategyTest {
 	public void paperStrategy_should_return_paper()
 	{
 		Strategy paperStrategy = new PaperStrategy();
-		Motion motion = paperStrategy.retrieveNextMove();
+		
+		Motion motion = paperStrategy.retrieveMotion();
+		
 		assertEquals(Motion.Paper,motion);
 	}
 	
@@ -42,11 +44,14 @@ public class StrategyTest {
 		
 		RandomStrategy myrandomStrategy = new RandomStrategy();
 		myrandomStrategy.random = deterministicRandom;
-		Motion motion = myrandomStrategy.retrieveNextMove();
+		
+		Motion motion = myrandomStrategy.retrieveMotion();
 		assertEquals(Motion.Rock,motion);
-		 motion = myrandomStrategy.retrieveNextMove();
+		
+		 motion = myrandomStrategy.retrieveMotion();
 		assertEquals(Motion.Paper,motion);
-		 motion = myrandomStrategy.retrieveNextMove();
+		
+		 motion = myrandomStrategy.retrieveMotion();
 		assertEquals(Motion.Scissors,motion);
 	}
 	
@@ -55,7 +60,9 @@ public class StrategyTest {
 	{
 		systemInMock.provideLines("R");
 		Strategy userStrategy = new UserStrategy();
-		Motion motion = userStrategy.retrieveNextMove();
+		
+		Motion motion = userStrategy.retrieveMotion();
+		
 		assertEquals(Motion.Rock,motion);
 	}
 }
